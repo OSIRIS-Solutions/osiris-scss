@@ -1,0 +1,77 @@
+/*
+-------------------------------------------------------------------------------
+OSIRIS CSS
+Version: 1.0.0
+Copyright Julia Koblitz, julia.koblitz@osiris-solutions.de
+-------------------------------------------------------------------------------
+
+Credits:
+    Halfmoon, Bootstrap and their contributors for source code.
+    This SCSS files incorporates some elements from the forementioned projects,
+    so following copyright notices are provided:
+
+    -------------------------------------------------------------------------------
+    Halfmoon CSS
+    Version: 1.1.1
+    https://www.gethalfmoon.com
+    Copyright, halfmoon UI
+    Licensed under MIT (https://www.gethalfmoon.com/license)
+    -------------------------------------------------------------------------------
+
+    ---------------------------------------------------------------------------
+    Bootstrap (https://getbootstrap.com/)
+    Copyright 2011-2020 The Bootstrap Authors
+    Copyright 2011-2020 Twitter, Inc.
+    Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+    ---------------------------------------------------------------------------
+*/
+
+@import 'src/variables';
+@import 'src/functions';
+@import 'src/fonts';
+@import 'src/normalize';
+@import 'src/base';
+@import 'src/typography';
+@import 'src/icons';
+@import 'src/scrollbars';
+@import 'src/layout';
+@import 'src/page';
+@import 'src/links';
+@import 'src/buttons';
+@import 'src/list';
+@import 'src/code';
+@import 'src/tables';
+@import 'src/form';
+@import 'src/dropdown';
+@import 'src/modal';
+@import 'src/alerts';
+@import 'src/navbar';
+@import 'src/footer';
+@import 'src/sidebar';
+@import 'src/pagenav';
+@import 'src/boxes';
+@import 'src/section';
+@import 'src/pagination';
+@import 'src/breadcrumb';
+@import 'src/tooltips';
+@import 'src/badges';
+@import 'src/image';
+@import 'src/collapse';
+@import 'src/progress';
+@import 'src/spacing';
+@import 'src/display';
+@import 'src/sizing';
+@import 'src/flex';
+@import 'src/position';
+@import 'src/other';
+@import 'src/activity';
+@import 'src/print';
+@import 'src/accessibility';
+
+@import 'src/osiris';
+@import 'src/quill';
+@import 'src/querybuilder';
+@import 'src/popover';
+@import 'src/portfolio';
+@import 'src/commandpalette';
+@import 'src/achievements';

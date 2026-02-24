@@ -1,0 +1,177 @@
+/*
+-------------------------------------------------------------------------------
+8.  List [hm-08]
+-------------------------------------------------------------------------------
+*/
+
+/* Unordered list */
+$unordered-list-item-bullet-width: 0.8rem;
+
+/* Ordered list */
+$ordered-list-item-numbering-width: 2rem;
+
+ul {
+  list-style: disc inside;
+}
+
+ol {
+  list-style: decimal inside;
+}
+
+ol,
+ul {
+  padding-left: 0;
+  margin-top: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+.list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Unordered list */
+
+ul.list {
+
+
+  &>li {
+    position: relative;
+    padding-left: 2.4rem;
+
+    &::before {
+      content: " ";
+      display: inline-block;
+      position: absolute;
+      width: $unordered-list-item-bullet-width;
+      height: $unordered-list-item-bullet-width;
+      // top: calc(50% - #{$unordered-list-item-bullet-width/2});
+      top: calc(((#{$base-line-height} * #{$base-font-size}) - #{$unordered-list-item-bullet-width}) / 2);
+
+      /* Centers bullet vertically with the first line */
+      left: 0;
+      border-radius: 50%;
+      border-width: 0;
+      background-color: var(--primary-color);
+      // rgba(0, 0, 0, 0.6)
+      border-color: transparent;
+      box-shadow: none;
+    }
+  }
+
+
+  // for each color
+
+  @each $name in $colors {
+    &.#{$name}>li::before {
+      background-color: var(--#{$name}-color);
+    }
+  }
+}
+
+/* Ordered list */
+
+ol.list {
+  counter-reset: ordered-list-counter;
+
+  &>li {
+    position: relative;
+    padding-left: 4rem;
+    counter-increment: ordered-list-counter;
+
+    &::before {
+      content: counter(ordered-list-counter);
+      display: inline-block;
+      position: absolute;
+      text-align: center;
+      min-width: $ordered-list-item-numbering-width;
+      height: $ordered-list-item-numbering-width;
+      // top: calc(50% - #{$ordered-list-item-numbering-width/2});
+      top: calc(((#{$base-line-height} * #{$base-font-size}) - #{$ordered-list-item-numbering-width}) / 2);
+      /* Centers numbering vertically with the first line */
+      left: 0;
+      border-radius: $ordered-list-item-numbering-width;
+      border-width: 0;
+      font-size: 1.2rem;
+      line-height: $ordered-list-item-numbering-width;
+      // padding: calc((#{$ordered-list-item-numbering-width} - #{$ordered-list-item-numbering-font-size}) / 2);
+      color: var(--primary-color);
+      background-color: var(--primary-color-20);
+      border-color: transparent;
+      box-shadow: none;
+      font-weight: bold;
+    }
+  }
+
+  @each $name in $colors {
+    &.#{$name}>li::before {
+      background-color: var(--#{$name}-color-20);
+      color: var(--#{$name}-color);
+    }
+  }
+}
+
+ul.horizontal {
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0;
+
+    &::after {
+      content: "";
+      margin: 0 1rem;
+      border: var(--border-width) solid var(--border-color);
+    }
+
+    &:last-child::after {
+      border: none;
+    }
+  }
+}
+
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: var(--border-radius);
+
+  li {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: #fff;
+    border: var(--border-width) solid var(--border-color);
+    margin: 0;
+
+    &:first-child {
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    &:last-child {
+      border-bottom-right-radius: var(--border-radius);
+      border-bottom-left-radius: var(--border-radius);
+    }
+  }
+
+  li+li {
+    border-top-width: 0;
+  }
+}

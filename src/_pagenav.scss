@@ -1,0 +1,140 @@
+.on-this-page-nav {
+  position: sticky;
+  top: $navbar-height;
+  z-index: 20;
+  padding: 0.5rem;
+  max-height: calc(100vh - #{$navbar-height});
+  max-width: 30rem;
+  overflow-y: auto;
+
+  .title {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-align: left;
+    display: block;
+    padding: 0.4rem 0 0.4rem 2rem;
+    line-height: 1.4;
+    color: rgba(0, 0, 0, 0.7);
+    border-left: 2px solid rgba(0, 0, 0, 0.15);
+    margin-left: 0.5rem;
+
+    &.active {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    &:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+      border-left-color: var(--primary-color);
+    }
+  }
+}
+
+// pill nav
+
+.pills {
+  background: var(--box-bg-color);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  display: inline-block;
+  border: var(--border-width) solid var(--border-color);
+  box-shadow: var(--box-shadow);
+
+  .btn {
+    border: none;
+    border-radius: var(--border-radius);
+    margin: 0.2rem;
+    color: var(--primary-color);
+    background-color: var(--box-bg-color);
+    box-shadow: none !important;
+
+    &:hover {
+      background-color: var(--primary-color-20);
+    }
+
+    &.active,
+    &:active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+  }
+
+  .badge {
+    height: 3.2rem;
+    line-height: 3.2rem;
+    padding: 0 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 0.2rem;
+    cursor: default;
+  }
+
+  &.small {
+    padding: 0.3rem;
+
+    .btn,
+    .badge {
+      height: 2.6rem;
+      line-height: 2.6rem;
+      padding: 0 1rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  .btn.active,
+  .btn:active,
+  .btn:hover {
+    .index {
+      background-color: white;
+      color: var(--primary-color);
+    }
+  }
+}
+
+
+.tabs {
+  margin-bottom: -1px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  .btn {
+    /* padding-bottom: 1rem; */
+    height: 3.2rem;
+    margin-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: none !important;
+    color: var(--primary-color);
+
+    &.active {
+      border: var(--border-width) solid var(--primary-color);
+      background-color: var(--primary-color-20);
+      color: var(--primary-color);
+    }
+  }
+
+}
+
+
+.pills .index,
+.tabs .index,
+.btn .index {
+  background-color: var(--body-color);
+  border-radius: 10px;
+  color: var(--muted-color);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 10px;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+
+}

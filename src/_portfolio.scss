@@ -1,0 +1,12 @@
+/*
+Dedicated CSS for OSIRIS Portfolio
+- added here to have only one CSS file for all OSIRIS pages
+*/
+
+:root {
+    // Breadcrumb section (only Portfolio)
+    --breadcrumb-bg-color: var(--body-color);
+    --breadcrumb-divider-color: var(--muted-color);
+    --breadcrumb-text-color: var(--text-color);
+    --breadcrumb-link-color: var(--link-color);  
+}

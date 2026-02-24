@@ -1,0 +1,45 @@
+/*
+-------------------------------------------------------------------------------
+Code
+-------------------------------------------------------------------------------
+*/
+
+// $code-font-size: 1.2rem;
+$code-padding: 0.1rem 0.5rem;
+$code-margin: 0 0.1rem;
+
+
+code,
+.code {
+    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.code {
+    // font-size: $code-font-size;
+    line-height: $base-line-height;
+    padding: $code-padding;
+    margin: $code-margin;
+    color: var(--danger-color-dark);
+    background-color: white;
+    border:var(--border-width) solid rgba(0, 0, 0, 0.05);
+    border-radius: var(--border-radius);
+}
+
+/*  Keyboard input */
+
+kbd {
+    font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    // font-size: $code-font-size;
+    line-height: $base-line-height;
+    padding: $code-padding;
+    margin: $code-margin;
+    color: var(--text-color);
+    background-color: white;
+    border:var(--border-width) solid var(--border-color);
+    border-radius: 0.4rem;
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none; 
+}
+
+

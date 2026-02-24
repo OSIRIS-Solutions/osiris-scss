@@ -1,0 +1,699 @@
+/*
+-------------------------------------------------------------------------------
+5.  Page building (containers, columns, content and tile) [hm-05]
+-------------------------------------------------------------------------------
+*/
+
+/* Containers */
+
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-fluid {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.container-fluid {
+    width: 100%;
+}
+
+.container,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl {
+    width: 100%;
+}
+
+@include respond-above(sm) {
+
+    .container,
+    .container-sm {
+        max-width: 72rem;
+    }
+}
+
+@include respond-above(md) {
+
+    .container,
+    .container-sm,
+    .container-md {
+        max-width: 96rem;
+    }
+}
+
+@include respond-above(lg) {
+
+    .container,
+    .container-sm,
+    .container-md,
+    .container-lg {
+        max-width: 118rem;
+    }
+}
+
+/* Columns */
+
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.divider {
+    width: 1px;
+    background-color: $divider-color;
+}
+
+.hero-box .divider {
+    margin: -.5rem 2rem;
+}
+
+.text-divider {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    margin: 0rem;
+    padding: 0em;
+    width: auto;
+    height: 50%;
+    line-height: 0em;
+    text-align: center;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    font-size: 1rem;
+
+    &::before,
+    &::after {
+        position: absolute;
+        left: 50%;
+        content: '';
+        z-index: 3;
+        border-left: 1px solid $divider-color;
+        // border-right: var(--border-width) solid rgba(255, 255, 255, 0.1);
+        width: 0%;
+        height: calc(100% - 1rem);
+    }
+
+    &::after {
+        top: auto;
+        bottom: 0px;
+    }
+
+    &::before {
+        top: -100%;
+    }
+}
+
+
+$columns: 12;
+$col-prefixes: "", "-sm", "-md", "-lg", "-xl";
+$breakpoints: (
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+$max-offset: 11;
+
+// 'Helper mixin'
+// volle flexible Spalte (wie .col-sm)
+@mixin col-fluid {
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+// auto-Spalte (wie .col-sm-auto)
+@mixin col-auto {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+}
+
+// feste Spaltenbreite (wie .col-sm-1 ... .col-sm-12)
+@mixin col-span($n) {
+    $w: calc(100% / $columns * $n);
+
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 $w;
+    -ms-flex: 0 0 $w;
+    flex: 0 0 $w;
+    max-width: $w;
+}
+
+// Basis für .col und .col-auto
+[class^=col] {
+    position: relative;
+    width: 100%;
+}
+
+// @each $prefix in $col-prefixes {
+
+//     .col#{$prefix},
+//     .col#{$prefix}-auto {
+//         position: relative;
+//         width: 100%;
+//     }
+
+//     @for $i from 1 through $columns {
+//         .col#{$prefix}-#{$i} {
+//             position: relative;
+//             width: 100%;
+//         }
+//     }
+// }
+.col {
+    @include col-fluid;
+}
+
+@for $i from 1 through $columns {
+    .col-#{$i} {
+        @include col-span($i);
+    }
+}
+
+@for $i from 1 through $max-offset {
+    .offset-#{$i} {
+        margin-left: calc(100% / $columns * $i);
+    }
+}
+
+.order-first {
+    -webkit-box-ordinal-group: 0;
+    -webkit-order: -1;
+    -ms-flex-order: -1;
+    order: -1;
+}
+
+.order-last {
+    -webkit-box-ordinal-group: 14;
+    -webkit-order: 13;
+    -ms-flex-order: 13;
+    order: 13;
+}
+
+@each $name, $min-width in $breakpoints {
+
+    @include respond-above($name) {
+
+        // .col-sm, .col-md, ...
+        .col-#{$name} {
+            @include col-fluid;
+        }
+
+        // .col-sm-auto, .col-md-auto, ...
+        .col-#{$name}-auto {
+            @include col-auto;
+        }
+
+        // .col-sm-1 .. .col-sm-12, etc.
+        @for $i from 1 through $columns {
+            .col-#{$name}-#{$i} {
+                @include col-span($i);
+            }
+        }
+
+        // order-{bp}-first / order-{bp}-last
+        .order-#{$name}-first {
+            -webkit-box-ordinal-group: 0;
+            -webkit-order: -1;
+            -ms-flex-order: -1;
+            order: -1;
+        }
+
+        .order-#{$name}-last {
+            -webkit-box-ordinal-group: 14;
+            -webkit-order: 13;
+            -ms-flex-order: 13;
+            order: 13;
+        }
+
+        // .order-{bp}-0 .. .order-{bp}-12
+        @for $i from 0 through 12 {
+            .order-#{$name}-#{$i} {
+                -webkit-box-ordinal-group: $i + 1;
+                -webkit-order: $i;
+                -ms-flex-order: $i;
+                order: $i;
+            }
+        }
+
+        // Offsets: .offset-{bp}-0 .. .offset-{bp}-11
+        .offset-#{$name}-0 {
+            margin-left: 0;
+        }
+
+        @for $i from 1 through $max-offset {
+            .offset-#{$name}-#{$i} {
+                margin-left: calc(100% / $columns * $i);
+            }
+        }
+    }
+}
+
+
+/* Rows with equal spacing */
+
+.row.row-eq-spacing {
+    margin: 2rem -1rem;
+    padding: 0;
+}
+
+.row.row-eq-spacing>[class^="col"] {
+    padding-left: $content-and-tile-spacing-half;
+    padding-right: $content-and-tile-spacing-half;
+}
+
+.row.row-eq-spacing>[class^="col"]>.content,
+.row.row-eq-spacing>[class^="col"]>.tile {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row.row-eq-spacing>[class^="col"]>.content:first-child,
+.row.row-eq-spacing>[class^="col"]>.tile:first-child {
+    margin-top: 0;
+}
+
+.row.row-eq-spacing>[class^="col"]>.content:last-child,
+.row.row-eq-spacing>[class^="col"]>.tile:last-child {
+    margin-bottom: 0;
+}
+
+@include respond-below(sm) {
+    .row.row-eq-spacing {
+        margin: 2rem -1rem;
+        padding: 0;
+    }
+
+    .row.row-eq-spacing>[class^="col"] {
+        padding-left: $content-and-tile-spacing-xs-half;
+        padding-right: $content-and-tile-spacing-xs-half;
+    }
+}
+
+/* Adjustments for small screens and up (> 576px) */
+
+@include respond-above(sm) {
+    .row.row-eq-spacing-sm:not(.row-eq-spacing) {
+        margin: 2rem -1rem;
+        padding: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"] {
+        padding-left: $content-and-tile-spacing-half;
+        padding-right: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content:first-child,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content:last-child,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(sm) {
+    .row.row-eq-spacing-sm:not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-xs-half;
+        margin-bottom: $content-and-tile-spacing-xs-half;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]:last-child {
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):first-child,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):last-child,
+    .row.row-eq-spacing-sm:not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Adjustments for medium screens and up (> 768px) */
+
+@include respond-above(md) {
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin: 2rem -1rem;
+        padding: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        padding-left: $content-and-tile-spacing-half;
+        padding-right: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:first-child,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:last-child,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(md) {
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-half;
+        margin-bottom: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:last-child {
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):first-child,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):last-child,
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(sm) {
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-xs-half;
+        margin-bottom: $content-and-tile-spacing-xs-half;
+    }
+
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-md:not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+}
+
+/* Adjustments for large screens and up (> 992px) */
+
+@include respond-above(lg) {
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin: 2rem -1rem;
+        padding: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        padding-left: $content-and-tile-spacing-half;
+        padding-right: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:first-child,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:last-child,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(lg) {
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-half;
+        margin-bottom: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:last-child {
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):first-child,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):last-child,
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(sm) {
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-xs-half;
+        margin-bottom: $content-and-tile-spacing-xs-half;
+    }
+
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-lg:not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+}
+
+/* Adjustments for extra large screens and up (> 1200px) */
+
+@include respond-above(xl) {
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin: 2rem -1rem;
+        padding: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        padding-left: $content-and-tile-spacing-half;
+        padding-right: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:first-child,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:last-child,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(xl) {
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-half;
+        margin-bottom: $content-and-tile-spacing-half;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]:last-child {
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing;
+        margin-bottom: $content-and-tile-spacing;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):first-child,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):first-child {
+        margin-top: 0;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child):last-child,
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child):last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include respond-below(sm) {
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing) {
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"] {
+        /* No margin collapse (due to flexbox), so half is used */
+        margin-top: $content-and-tile-spacing-xs-half;
+        margin-bottom: $content-and-tile-spacing-xs-half;
+    }
+
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.content:not(:only-child),
+    .row.row-eq-spacing-xl:not(.row-eq-spacing-lg):not(.row-eq-spacing-md):not(.row-eq-spacing-sm):not(.row-eq-spacing)>[class^="col"]>.tile:not(:only-child) {
+        /* Margin collapse, so full is used (not half) */
+        margin-top: $content-and-tile-spacing-xs;
+        margin-bottom: $content-and-tile-spacing-xs;
+    }
+}
+
+/* Content and tile */
+
+.content {
+    margin: $content-and-tile-spacing;
+}
+
+@include respond-below(sm) {
+    .content {
+        margin: $content-and-tile-spacing-xs;
+    }
+}
+
+.content .title {
+    font-size: $content-title-font-size;
+    font-weight: $content-title-font-weight;
+    margin-top: 0;
+}
+
+
+// gap utility for each in 5, 10, 15, 20
+@for $i from 1 through 4 {
+    .gap-#{$i * 5} {
+        gap: $i * 0.5rem !important;
+    }
+}
+
+// .box .content {
+//     margin: 0;
+//     padding: $content-and-tile-spacing;
+// }

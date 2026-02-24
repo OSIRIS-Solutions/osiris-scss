@@ -1,0 +1,300 @@
+.quality-control {
+    z-index: 20;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    --workflow-width: 50rem;
+}
+
+.wf-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 15px 40px 30px;
+    max-width: 100%;
+    width: var(--workflow-width);
+
+    .wf-line {
+        flex: 1;
+        height: 2px;
+        background: #ccc;
+    }
+}
+
+.wf-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+}
+
+.wf-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.current {
+        border-color: var(--blue-color);
+        border-width: 1px;
+
+        &:after {
+            content: '';
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: var(--blue-color);
+            border-radius: 1rem;
+        }
+
+        &.same_org_only:after {
+            content: '\e4d6';
+            font-family: var(--icon-font);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+    }
+
+
+    &.approved {
+        background: var(--success-color);
+        border-color: var(--success-color);
+        color: #fff;
+    }
+
+    &.rejected {
+        background: var(--danger-color);
+        border-color: var(--danger-color);
+        color: white;
+    }
+
+
+    &.future {
+        border-color: #ccc;
+        background: #eee;
+    }
+
+    &.current, &.rejected {
+        &.user-can-approve::before {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 6px;
+            border-style: solid;
+            border-color: transparent transparent var(--blue-color) transparent;
+        }
+    }
+
+
+    .icon {
+        font-size: 16px;
+    }
+}
+
+
+.wf-step-label {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    top: 24px;
+    color: var(--muted-color);
+    max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    /* display: none; */
+}
+
+.wf-step.current .wf-step-label {
+    display: block;
+    font-weight: bold;
+    color: var(--blue-color);
+}
+
+.wf-step.approved .wf-step-label {
+    color: var(--success-color);
+}
+.wf-step.rejected .wf-step-label {
+    color: var(--danger-color);
+}
+
+.wf-actions {
+    border: var(--border-width) solid var(--blue-color);
+    padding: .5rem 1rem;
+    border-radius: var(--border-radius);
+    width: calc(var(--workflow-width) + 4rem);
+    max-width: 100%;
+    text-align: center;
+    background-color: var(--blue-color-20);
+}
+
+
+/* Höhe der Topbar an dein Layout anpassen */
+:root {
+    --os-header-h: var(--navbar-bottom-height);
+}
+
+#wf-mini {
+    position: sticky;
+    top: var(--os-header-h);
+    z-index: 50;
+    height: 2rem;
+    background: var(--gray-color-very-light);
+    /* neutral */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: var(--border-width) solid var(--muted-color-60);
+    border-top: var(--border-width) solid var(--muted-color-60);
+    box-shadow: var(--button-box-shadow);
+    z-index: 12;
+    cursor: pointer;
+    transition: height .3s ease;
+
+    &:hover {
+        height: 3rem;
+
+        .dot {
+            transform: scale(1.2);
+        }
+    }
+
+    b {
+        font-size: smaller;
+        /* font-weight: normal; */
+        margin-right: 2rem;
+        color: var(--muted-color);
+    }
+
+    &.has-action {
+        box-shadow: 0 0 8px var(--blue-color-60);
+        background: var(--blue-color-very-light);
+        border-color: var(--blue-color);
+
+        b {
+            color: var(--blue-color);
+            font-weight: bold;
+        }
+    }
+
+
+    &.ok {
+        background: var(--success-color-very-light);
+        border-color: var(--success-color-60);
+
+        b {
+            color: var(--success-color);
+        }
+    }
+
+    &.bad {
+        background: var(--danger-color-very-light);
+        border-color: var(--danger-color);
+
+        b {
+            color: var(--danger-color);
+        }
+    }
+
+    .track {
+        position: relative;
+        width: var(--workflow-width);
+        height: 6px;
+    }
+
+    .dot {
+        position: absolute;
+        top: 50%;
+        width: 14px;
+        height: 14px;
+        margin-top: -7px;
+        border-radius: 50%;
+        border: 2px solid var(--border-color);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform .15s;
+
+        &.approved {
+            background: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        &.rejected {
+            background: var(--danger-color);
+            border-color: var(--danger-color);
+            color: white;
+        }
+
+        &.current {
+            border-color: var(--blue-color);
+        }
+
+        &.future {
+            border-color: #ccc;
+            background: #eee;
+        }
+    }
+
+    .tick {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .track.ok .tick {
+        background: var(--success-color-20);
+    }
+
+    .track.bad .tick {
+        background: var(--danger-color);
+    }
+
+    .clickmask {
+        position: absolute;
+        inset: -6px 0;
+        cursor: pointer;
+    }
+
+}
+
+
+
+.rejection-chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+
+
+    .chat-bubble {
+        background-color: white;
+        border: var(--border-width) solid var(--border-color);
+        border-radius: 10px;
+        padding: 10px;
+        max-width: 100%;
+        position: relative;
+
+        b {
+            font-weight: bold;
+        }
+
+        .small {
+            font-size: 0.8em;
+            color: var(--muted-color);
+        }
+    }
+}

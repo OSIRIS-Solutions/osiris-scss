@@ -1,0 +1,243 @@
+/*
+-------------------------------------------------------------------------------
+Alerts
+-------------------------------------------------------------------------------
+*/
+
+.alert {
+  --icon: '\E2CE'; // info
+  --color: var(--primary-color);
+  margin: 0;
+  padding: 1rem 2rem 1rem 5rem;
+  border: var(--border-width) solid var(--color);
+  border-left-width: 8px;
+  font-style: inherit;
+  position: relative;
+  border-radius: var(--border-radius);
+  background-color: #ffffff;
+  box-shadow: var(--box-shadow);
+
+  .title {
+    color: var(--color);
+    margin: 0;
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  &::before {
+    content: var(--icon);
+    position: absolute;
+    display: block;
+    font-family: $icon-font;
+    font-size: 3rem;
+    color: var(--color);
+    // margin-left: -4rem;
+    // align-self: anchor-center;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 1;
+  }
+
+  p {
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: inherit;
+    padding: 0.4rem 0.6rem;
+    line-height: 1;
+    font-size: 1.6rem;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:focus {
+      outline: 2px solid rgba(0, 0, 0, 0.5);
+      outline-offset: $button-outline-offset;
+    }
+  }
+
+  &.dispose {
+    display: none;
+  }
+
+  @each $name in $colors {
+    &.#{$name} {
+      --color: var(--#{$name}-color);
+
+      @if $name ==danger {
+        --icon: '\E4E0'; // warning
+      }
+
+      @else if $name ==success {
+        --icon: '\E184'; // check-circle
+        // --image: url('../img/sophie/sophie-excited.png');
+      }
+
+      @else if $name ==signal {
+        --icon: '\E4E4'; // warning-octagon
+        // --image: url('../img/sophie/sophie-excited.png');
+      }
+
+      hr {
+        background-color: var(--#{$name}-color-30);
+      }
+
+      a {
+        color: var(--#{$name}-color-dark);
+
+        &:hover {
+          color: var(--#{$name}-color);
+        }
+      }
+    }
+  }
+
+  &.without-icon {
+    padding-left: 2rem;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.card {
+  position: relative;
+  padding: 1rem 2rem;
+  color: var(--text-color);
+  background-color: var(--box-bg-color);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--button-box-shadow);
+
+  .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    color: inherit;
+    padding: 0.4rem 0.6rem;
+    line-height: 1;
+    font-size: 1.6rem;
+    background-color: transparent;
+    border-color: transparent;
+
+    &:focus {
+      outline: 2px solid rgba(0, 0, 0, 0.5);
+      outline-offset: $button-outline-offset;
+    }
+  }
+
+  &.dispose {
+    display: none;
+  }
+
+  &.filled {
+    color: white;
+  }
+
+  @each $name in $colors {
+    &.#{$name} {
+      background-color: var(--#{$name}-color-20);
+      border-color: var(--#{$name}-color);
+
+      &.filled {
+        background-color: var(--#{$name}-color);
+      }
+    }
+  }
+
+  // a:not(.btn, .link) {
+  //   cursor: pointer;
+  //   color: inherit;
+
+  //   &:hover {
+  //     color: inherit;
+  //     opacity: 0.75;
+  //   }
+  // }
+
+  // a.btn,
+  // a.link {
+  //   text-decoration: none;
+  // }
+
+  .title {
+    color: inherit;
+    font-size: 1.6rem;
+    font-weight: $content-title-font-weight;
+    margin: 0 0 0.5rem 0;
+  }
+}
+
+.sticky-alerts {
+  .alert {
+    display: none;
+    width: 27rem;
+    margin-top: 1rem;
+    right: -50rem;
+    // background-color: #ffffff;
+    // box-shadow: 0 10px 20px rgba(75, 50, 50, 0.05);
+    // border: var(--border-width) solid var(--success-color);
+    // border-left-width: 8px;
+    // padding: 1rem 2rem 1rem 5rem;
+
+    // &::before {
+    //   content: '\E7FC';
+    //   position: absolute;
+    //   display: block;
+    //   font-family: var(--icon-font);
+    //   font-size: 3rem;
+    //   color: var(--signal-color);
+    //   margin-left: -4rem;
+    // }
+
+    &.show {
+      right: 0;
+      -webkit-transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    &.fade {
+      visibility: hidden;
+      opacity: 0;
+      -webkit-transition: visibility 0s 0.4s, opacity 0.4s linear;
+      transition: visibility 0s 0.4s, opacity 0.4s linear;
+    }
+
+    &.block {
+      display: block;
+
+      &.dispose {
+        display: none;
+      }
+    }
+
+    // @each $name in $colors {
+    //   &.#{$name} {
+    //     // background-color: var(--#{$name}-color-very-light);
+    //     border-color: var(--#{$name}-color);
+    //     &::before {
+    //       color: var(--#{$name}-color);
+    //       @if $name == danger {
+    //         content: '\E4FA'; // x-square
+    //       } @else if $name == success {
+    //          content: '\E184'; // check-circle
+    //       }
+    //     }
+    //   }
+    // }
+  }
+}
+

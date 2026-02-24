@@ -1,0 +1,82 @@
+/*
+-------------------------------------------------------------------------------
+1.  Base styles [hm-01]
+-------------------------------------------------------------------------------
+*/
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+/* HTML font size and scaling */
+
+html {
+    font-size: $base-html-font-size;
+}
+@media (min-width: 1600px) {
+    html {
+        font-size: $base-html-font-size-1600;
+    }
+}
+@media (min-width: 1920px) {
+    html {
+        font-size: $base-html-font-size-1920;
+    }
+}
+@media (min-width: 2300px) {
+    html {
+        font-size: $base-html-font-size-2300;
+    }
+}
+
+/* Auto-scaling disabled */
+
+@media (min-width: 1600px) {
+    html.auto-scaling-disabled {
+        font-size: $base-html-font-size;
+    }
+}
+@media (min-width: 1920px) {
+    html.auto-scaling-disabled {
+        font-size: $base-html-font-size;
+    }
+}
+
+@media (min-width: 2300px) {
+    html.auto-scaling-disabled {
+        font-size: $base-html-font-size;
+    }
+}
+
+/* DOM body */
+
+body {
+    background-color: var(--body-color);
+    background-image: none;
+    color: var(--text-color);
+    font-size: var(--base-font-size);
+    line-height: $base-line-height;
+    font-family: var(--font-family);
+    font-weight: 400;
+    
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+/* Horizontal rule */
+
+hr {
+    height: var(--border-width);
+    color: var(--text-color);
+    background-color: $divider-color;
+    border: none;
+}
+

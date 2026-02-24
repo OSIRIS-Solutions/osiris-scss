@@ -1,0 +1,353 @@
+/*
+-------------------------------------------------------------------------------
+Boxes, tiles, and title bar
+-------------------------------------------------------------------------------
+*/
+
+
+.title-bar {
+    background-color: $gray-color-very-light;
+    // color: white;
+    // a {
+    //     color: white;
+    //     text-decoration: underline dashed;
+    // }
+    border-bottom: var(--border-width) solid var(--border-color); 
+    border-top: var(--border-width) solid var(--border-color);
+
+    width: 100%;
+    box-sizing: border-box;
+    // overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5rem 1rem;
+
+    // box-shadow: var(--box-shadow) inset;
+
+    position: sticky;
+    top: $navbar-bottom-height;
+    z-index: 12;
+
+    &>.row {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        max-width: 50%;
+
+        .title {
+            display: block;
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+    }
+
+    .breadcrumb {
+        margin: 1rem 2rem;
+    }
+}
+
+
+@include respond-below(sm) {
+
+    .title-bar {
+        position: static;
+    }
+}
+
+
+
+.box {
+    width: 100%;
+    margin: 20px 0;
+    border: var(--border-width) solid var(--border-color);
+    -webkit-box-shadow: var(--box-shadow);
+    -moz-box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
+    background-color: var(--box-bg-color);
+    padding: 0;
+    padding-top: 0.01px; padding-bottom: 0.01px; /* to fix collapsing margin issue */
+    border-radius: var(--border-radius);
+
+    &.padded {
+        padding: 1rem 2rem;
+    }
+
+    &>.title, &.content>.title {
+        font-size: $content-title-font-size;
+        font-weight: $content-title-font-weight;
+        margin-top: 0;
+    }
+
+    &>.header {
+        background-color: $table-head-color;
+        margin: 0;
+        border-bottom: var(--border-width) solid var(--border-color);
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+    }
+
+    &>.footer {
+        background-color: $gray-color-light;
+        margin: 0 0;
+        border-top: var(--border-width) solid var(--border-color);
+        border-bottom-left-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+    }
+
+    &>.header, &>.footer {
+        display: flex;
+        align-items: center;
+        padding: 1rem 2rem;
+    }
+    hr {
+        margin: 1.5rem 0;
+    }
+    
+    @each $name in $colors {
+        &.#{$name} {
+            border-left: 4px solid var(--#{$name}-color);
+            &>.header {
+                background-color: var(--#{$name}-color-very-light);
+            }
+        }
+    }
+
+    &:target {
+        -moz-box-shadow: 0 0 0 0.3rem var(--signal-box-shadow-color);
+        -webkit-box-shadow: 0 0 0 0.3rem var(--signal-box-shadow-color);
+        box-shadow: 0 0 0 0.3rem var(--signal-box-shadow-color);
+    }
+
+
+    &.duplicate {
+        color: var(--muted-color);
+        opacity: 0.7;
+        border-color: var(--danger-color);
+        position: relative;
+        padding-top: 2rem;
+
+        &::before {
+            content: 'DUPLICATE';
+            font-size: small;
+            font-weight: bold;
+            display: block;
+            position: absolute;
+            top: 1rem;
+            color: white;
+            background: var(--danger-color);
+            padding: 0 .5rem;
+            padding-left: 2.2rem;
+        }
+    }
+}
+
+
+.tile {
+    display: flex;
+    position: relative;
+    margin: 1rem;
+    padding: 1rem;
+    color: var(--text-color);
+    background-color: var(--box-bg-color);
+    border-radius: var(--border-radius);
+    border:var(--border-width) solid var(--border-color);
+    -moz-box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    min-height: 10rem;
+
+    flex-wrap: wrap;
+align-items: center;
+justify-content: center;
+
+    &>* {
+        width: 100%;
+    }
+
+    img {
+        height: auto;
+    }
+
+    .tile-icon {
+        font-size: 10rem;
+        display: block;
+        margin: 1rem;
+
+        &.small {
+            font-size: 8rem;
+        }
+    }
+
+    .tile-number {
+        font-size: 8rem;
+        display: block;
+        font-weight: 300;
+
+        &.small {
+            font-size: 6rem;
+        }
+    }
+
+    .tile-link {
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    &.tile-link {
+        text-align: center;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        transition: 0.5s ease transform;
+
+        .link {
+            font-weight: bold;
+            color: var(--text-color);
+
+            &::after {
+                font-family: $icon-font;
+                // font-weight: 900;
+                color: var(--secondary-color);
+                // content: '\f061';
+                content: '\E06C';
+                margin-left: .5rem;
+            }
+        }
+
+        &:hover {
+            color: var(--text-color);
+            text-decoration: none;
+            box-shadow: var(--box-shadow)-long;
+            transform: translateY(-.3rem);
+        }
+
+    }
+
+}
+
+@include respond-below(sm) {
+    .tile {
+        margin: $content-and-tile-spacing-xs;
+        padding: $content-and-tile-spacing-xs;
+    }
+}
+
+.tile-title {
+    font-size: $content-title-font-size;
+    font-weight: $content-title-font-weight;
+    margin-top: 0;
+}
+
+.tiles {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    .tile {
+        -webkit-flex-basis: 0;
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+
+        // margin-top: 0;
+        // margin-bottom: 0;
+        display: flex;
+        flex-direction: column;
+
+        // &:first-child {
+        //     margin-left: 0;
+        // }
+
+        // &:last-child {
+        //     margin-right: 0;
+        // }
+    }
+
+    .tile-content,
+    .tile-icon,
+    .tile-number {
+        flex: 1 1 auto;
+    }
+
+}
+
+
+
+/* tile padding */
+
+.p-tile {
+    padding: $content-and-tile-spacing;
+}
+
+.px-tile {
+    padding-left: $content-and-tile-spacing;
+    padding-right: $content-and-tile-spacing;
+}
+
+.py-tile {
+    padding-top: $content-and-tile-spacing;
+    padding-bottom: $content-and-tile-spacing;
+}
+
+@include respond-below(sm) {
+    .p-tile {
+        padding: $content-and-tile-spacing-xs;
+    }
+
+    .px-tile {
+        padding-left: $content-and-tile-spacing-xs;
+        padding-right: $content-and-tile-spacing-xs;
+    }
+
+    .py-tile {
+        padding-top: $content-and-tile-spacing-xs;
+        padding-bottom: $content-and-tile-spacing-xs;
+    }
+}
+
+
+/* Vertical spacer */
+
+.v-spacer {
+    height: 2rem;
+    position: relative;
+    width: 100%;
+}
+
+@include respond-below(sm) {
+    .v-spacer {
+        height: $content-and-tile-spacing-xs;
+    }
+}
+
+// Special cases
+
+.box > .table.simple th:first-child,
+.box > .table.simple td:first-child {
+  padding-left: 1.4rem;
+}
+
+.box > .content > .flag {
+  /* background-color: var(--secondary-color-20); */
+  background: #f1f1f1;
+  /* border: var(--border-width) solid var(--border-color);
+    border-left-width: 0; */
+  /* color: var(--secondary-color); */
+  font-weight: bold;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  margin-left: -2rem;
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  background: var(--text-color);
+  color: white;
+}

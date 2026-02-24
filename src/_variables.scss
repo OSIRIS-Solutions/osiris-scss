@@ -1,0 +1,404 @@
+/*
+-------------------------------------------------------------------------------
+SASS variables
+-------------------------------------------------------------------------------
+*/
+
+
+/* Base variables */
+
+$font-family: 'Rubik',
+        'Roboto',
+        Helvetica,
+        Arial,
+        sans-serif;
+$title-font: 'TikTok Sans',
+        'Rubik',
+        Helvetica,
+        Arial,
+        sans-serif;
+$icon-font: 'Phosphor';
+
+
+$base-html-font-size: 62.5%;
+/* 62.5% is used for easier calculations, because the base is now set to 10px, so 1.4rem = 14px for example. */
+$base-html-font-size-1600: 70%;
+/* For screens with widths >= 1600px */
+$base-html-font-size-1920: 75%;
+/* For screens with widths >= 1920px */
+$base-html-font-size-2300 : 83%;
+
+$max-page-width : 150rem;
+// 160rem;
+
+$base-font-size: 1.4rem;
+$base-line-height: 1.5;
+$base-border-width: 1px;
+$border-radius: .5rem;
+//0.4rem
+
+$box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.15);
+$box-shadow-long: 0px 2px 3px 0px rgba(0, 0, 0, 0.15);
+
+
+/* COLORS */
+
+
+$color-6: #005f60;
+$color-7: #042323;
+
+// neutral
+$color-gray-80: #575756;
+$color-gray-60: #878787;
+$color-gray-40: #b2b2b2;
+$color-gray-20: #dadada;
+
+/* secondary colors */
+
+$secondary-color: #f78104;
+$secondary-color-light: #faab36;
+$secondary-color-very-light: mix(white, $secondary-color, 80%);
+$secondary-color-dark: #e95709;
+$secondary-color-very-dark: mix(black, $secondary-color, 80%);
+$secondary-color-10: rgba($secondary-color, 0.1);
+$secondary-color-20: rgba($secondary-color, 0.2);
+$secondary-color-30: rgba($secondary-color, 0.3);
+$secondary-color-60: rgba($secondary-color, 0.6);
+
+/* primary colors */
+
+$primary-color: #008083;
+$primary-color-light: #249ea0;
+$primary-color-very-light: mix(white, $primary-color, 80%);
+$primary-color-dark: #005f60;
+$primary-color-very-dark: mix(black, $primary-color, 80%);
+$primary-color-10: rgba($primary-color, 0.1);
+$primary-color-20: rgba($primary-color, 0.2);
+$primary-color-30: rgba($primary-color, 0.3);
+$primary-color-60: rgba($primary-color, 0.6);
+
+/* Success colors */
+
+$success-color: #63a308;
+$success-color-light: mix(white, $success-color, 10%);
+$success-color-very-light: mix(white, $success-color, 80%);
+$success-color-dark: mix(black, $success-color, 10%);
+$success-color-very-dark: mix(black, $success-color, 80%);
+$success-color-10: rgba($success-color, 0.1);
+$success-color-20: rgba($success-color, 0.2);
+$success-color-30: rgba($success-color, 0.3);
+$success-color-60: rgba($success-color, 0.6);
+
+/* Muted colors */
+
+
+$muted-color: $color-gray-60;
+$muted-color-light: mix(white, $muted-color, 10%);
+$muted-color-very-light: mix(white, $muted-color, 80%);
+$muted-color-dark: mix(black, $muted-color, 10%);
+$muted-color-very-dark: mix(black, $muted-color, 80%);
+$muted-color-10: rgba($muted-color, 0.1);
+$muted-color-20: rgba($muted-color, 0.2);
+$muted-color-30: rgba($muted-color, 0.3);
+$muted-color-60: rgba($muted-color, 0.6);
+
+/* Danger colors */
+
+$danger-color: #B61F29;
+$danger-color-light: mix(white, $danger-color, 10%);
+$danger-color-very-light: mix(white, $danger-color, 80%);
+$danger-color-dark: mix(black, $danger-color, 10%);
+$danger-color-very-dark: mix(black, $danger-color, 80%);
+$danger-color-10: rgba($danger-color, 0.1);
+$danger-color-20: rgba($danger-color, 0.2);
+$danger-color-30: rgba($danger-color, 0.3);
+$danger-color-60: rgba($danger-color, 0.6);
+
+
+
+/* Signal colors */
+
+$signal-color: #ECAF00;
+$signal-color-light: mix(white, $signal-color, 10%);
+$signal-color-very-light: mix(white, $signal-color, 80%);
+$signal-color-dark: mix(black, $signal-color, 10%);
+$signal-color-very-dark: mix(black, $signal-color, 80%);
+$signal-color-10: rgba($signal-color, 0.1);
+$signal-color-20: rgba($signal-color, 0.2);
+$signal-color-30: rgba($signal-color, 0.3);
+$signal-color-60: rgba($signal-color, 0.6);
+
+
+
+// other colors
+$dark-color: #191c20;
+$dark-color-light: #25282c;
+
+/* Gray colors */
+$gray-color: #e7e8e9;
+$gray-color-light: #f1f1f1;
+$gray-color-very-light: #f7f7f7;
+
+$body-color: $gray-color-light;
+$text-color: #464646;
+$border-color: #afafaf;
+$divider-color: rgba($border-color, 0.5);
+
+$base-text-color-light: rgba($text-color, 0.8);
+$dm-base-text-color: rgba(255, 255, 255, 0.8);
+
+$muted-text-color: #b3b3b3;
+$table-head-color: #dfdfdf;
+$link-color : $primary-color;
+$link-color-hover : mix(white, $link-color, 10%);
+
+/* Navbar */
+$navbar-height: 8rem;
+$navbar-bottom-height : 6rem;
+$navbar-large-height: $navbar-height+$navbar-bottom-height;
+
+$navbar-horizontal-padding: 1rem;
+$navbar-border-color: $border-color;
+$navbar-box-shadow: none;
+$navbar-fixed-bottom-box-shadow: none;
+
+/* Sidebar */
+
+$sidebar-width: 25rem;
+$sidebar-bg-color: white;
+$sidebar-box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.15);
+
+$sidebar-overlay-bg-color: rgba(0, 0, 0, 0.75);
+$sidebar-menu-vertical-margin: 2.5rem;
+$sidebar-item-horizontal-spacing: 2.5rem;
+$sidebar-item-vertical-spacing: 0.5rem;
+$sidebar-icon-width-height: 3rem;
+
+
+/* Box shadows */
+
+$shadow-color: rgba(0, 0, 0, 0.21);
+$dm-shadow-color: rgba(0, 0, 0, 0.4);
+$small-shadow: 0 0.1rem 0.2rem $shadow-color;
+$shadow: 0 0.2rem 0.4rem $shadow-color;
+$large-shadow: 0 0.4rem 0.8rem $shadow-color;
+
+
+/* Content and tile */
+
+$content-and-tile-spacing: 2rem;
+$content-and-tile-spacing-xs: 1.5rem;
+$content-and-tile-spacing-half: calc(#{$content-and-tile-spacing}/2);
+$content-and-tile-spacing-xs-half: calc(#{$content-and-tile-spacing-xs}/2);
+$content-title-font-size: 2rem;
+$content-title-font-weight: bold;
+
+$button-bg-color: #ffffff;
+$button-box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.05);
+$button-box-shadow-focus: 0 0 0 0.2rem $primary-color-60;
+$button-outline-color-focus: transparent;
+
+
+$dropdown-arrow-size: 0.8rem;
+$dropdown-arrow-size-negative: calc(#{$dropdown-arrow-size} * -1);
+$dropdown-arrow-inner-spacing: calc(0.2rem + (#{$dropdown-arrow-size} * -1));
+$dropdown-arrow-horizontal-spacing: 0.8rem;
+$dropdown-content-padding: 1.2rem;
+$dropdown-item-padding: 0.6rem $dropdown-content-padding;
+
+// Alerts
+
+$sticky-alert-box-shadow: 0 0.2rem 0 rgba(0, 0, 0, 0.045);
+
+
+$tooltip-arrow-width: 1rem;
+
+$progress-group-item-margin: 0.4rem;
+
+
+$breakpoints: (
+        xs: 576px,
+        sm: 768px,
+        md: 992px,
+        lg: 1200px,
+        xl: 1600px
+);
+
+$colors: (
+        secondary,
+        primary,
+        success,
+        danger,
+        signal,
+        muted,
+        'blue'
+);
+
+
+/*
+-------------------------------------------------------------------------------
+CSS variables (CSS custom properties)
+-------------------------------------------------------------------------------
+*/
+
+
+*:root {
+        --affiliation: "*";
+        // basic colors
+        --dark-color: #{$dark-color};
+        --dark-color-light: #{$dark-color-light};
+        --gray-color: #{$gray-color};
+        --gray-color-light: #{$gray-color-light};
+        --gray-color-very-light: #{$gray-color-very-light};
+        --body-color: #{$body-color};
+        --text-color: #{$text-color};
+        --border-color: #{$border-color};
+        --divider-color: #{$divider-color};
+        --font-family: #{$font-family};
+        --header-font: #{$title-font};
+        --icon-font: #{$icon-font};
+        --max-page-width : #{$max-page-width };
+        --base-font-size: #{$base-font-size};
+        --base-line-height: #{$base-line-height};
+        --border-width: #{$base-border-width};
+        --border-radius: #{$border-radius};
+        --base-text-color-light: #{$base-text-color-light};
+        --dm-base-text-color: #{$dm-base-text-color};
+        --muted-text-color: #{$muted-text-color};
+        --box-shadow: #{$box-shadow};
+        --box-shadow-long: #{$box-shadow-long};
+
+        --osiris-color: #{$secondary-color};
+        // secondary colors
+        --secondary-color: #{$secondary-color};
+        --secondary-color-light: #{$secondary-color-light};
+        --secondary-color-very-light: #{$secondary-color-very-light};
+        --secondary-color-dark: #{$secondary-color-dark};
+        --secondary-color-very-dark: #{$secondary-color-very-dark};
+        --secondary-color-10: #{$secondary-color-20};
+        --secondary-color-20: #{$secondary-color-20};
+        --secondary-color-30: #{$secondary-color-30};
+        --secondary-color-60: #{$secondary-color-60};
+
+        // primary colors
+        --primary-color: #{$primary-color};
+        --primary-color-light: #{$primary-color-light};
+        --primary-color-very-light: #{$primary-color-very-light};
+        --primary-color-dark: #{$primary-color-dark};
+        --primary-color-very-dark: #{$primary-color-very-dark};
+        --primary-color-10: #{$primary-color-20};
+        --primary-color-20: #{$primary-color-20};
+        --primary-color-30: #{$primary-color-30};
+        --primary-color-60: #{$primary-color-60};
+
+        --link-color: var(--primary-color);
+        --link-color-hover: var(--primary-color-light);
+
+        --success-color: #{$success-color};
+        --success-color-light: #{$success-color-light};
+        --success-color-very-light: #{$success-color-very-light};
+        --success-color-dark: #{$success-color-dark};
+        --success-color-very-dark: #{$success-color-very-dark};
+        --success-color-10: #{$success-color-20};
+        --success-color-20: #{$success-color-20};
+        --success-color-30: #{$success-color-30};
+        --success-color-60: #{$success-color-60};
+
+        --danger-color: #{$danger-color};
+        --danger-color-light: #{$danger-color-light};
+        --danger-color-very-light: #{$danger-color-very-light};
+        --danger-color-dark: #{$danger-color-dark};
+        --danger-color-very-dark: #{$danger-color-very-dark};
+        --danger-color-10: #{$danger-color-20};
+        --danger-color-20: #{$danger-color-20};
+        --danger-color-30: #{$danger-color-30};
+        --danger-color-60: #{$danger-color-60};
+
+        --muted-color: #{$muted-color};
+        --muted-color-light: #{$muted-color-light};
+        --muted-color-very-light: #{$muted-color-very-light};
+        --muted-color-dark: #{$muted-color-dark};
+        --muted-color-very-dark: #{$muted-color-very-dark};
+        --muted-color-10: #{$muted-color-20};
+        --muted-color-20: #{$muted-color-20};
+        --muted-color-30: #{$muted-color-30};
+        --muted-color-60: #{$muted-color-60};
+
+        --signal-color: #{$signal-color};
+        --signal-color-light: #{$signal-color-light};
+        --signal-color-very-light: #{$signal-color-very-light};
+        --signal-color-dark: #{$signal-color-dark};
+        --signal-color-very-dark: #{$signal-color-very-dark};
+        --signal-color-10: #{$signal-color-20};
+        --signal-color-20: #{$signal-color-20};
+        --signal-color-30: #{$signal-color-30};
+        --signal-color-60: #{$signal-color-60};
+
+        --blue-color: #06667d;
+        --blue-color-light: #239dbb;
+        --blue-color-very-light: #d3eaf0;
+        --blue-color-dark: #12687d;
+        --blue-color-very-dark: #043a48;
+        --blue-color-10: rgba(6, 102, 125, 0.1);
+        --blue-color-20: rgba(6, 102, 125, 0.2);
+        --blue-color-30: rgba(6, 102, 125, 0.3);
+        --blue-color-60: rgba(6, 102, 125, 0.6);
+
+
+        --spectrum-1-color: #2E7D5B;
+        --spectrum-1-color-20: #2E7D5B33;
+
+        --spectrum-2-color: #8a4c62;
+        --spectrum-2-color-20: #8a4c6233;
+
+        --spectrum-3-color: #2F5D8A;
+        --spectrum-3-color-20: #2F5D8A33;
+
+        --spectrum-4-color: #8c5e1f;
+        --spectrum-4-color-20: #8c5e1f33;
+
+        --box-bg-color: white;
+
+        --table-head-color: #{$table-head-color};
+        --navbar-height: #{$navbar-height};
+        --navbar-bottom-height : #{$navbar-bottom-height };
+        --navbar-large-height: #{$navbar-large-height};
+        --navbar-horizontal-padding: #{$navbar-horizontal-padding};
+        --navbar-border-color: #{$navbar-border-color};
+        --navbar-box-shadow: #{$navbar-box-shadow};
+        --navbar-fixed-bottom-box-shadow: #{$navbar-fixed-bottom-box-shadow};
+        --sidebar-width: #{$sidebar-width};
+        --sidebar-bg-color: #{$sidebar-bg-color};
+        --sidebar-box-shadow: #{$sidebar-box-shadow};
+        --sidebar-overlay-bg-color: #{$sidebar-overlay-bg-color};
+        --shadow-color: #{$shadow-color};
+        --dm-shadow-color: #{$dm-shadow-color};
+        --small-shadow: #{$small-shadow};
+        --shadow: #{$shadow};
+        --large-shadow: #{$large-shadow};
+        --content-and-tile-spacing: #{$content-and-tile-spacing};
+        --content-and-tile-spacing-xs: #{$content-and-tile-spacing-xs};
+        --content-and-tile-spacing-half: #{$content-and-tile-spacing-half};
+        --content-and-tile-spacing-xs-half: #{$content-and-tile-spacing-xs-half};
+        --content-title-font-size: #{$content-title-font-size};
+        --content-title-font-weight: #{$content-title-font-weight};
+        --button-bg-color: #{$button-bg-color};
+        --button-text-color: #{$base-text-color-light};
+        --button-border-color: var(--border-color);
+        --button-font-weight: normal;
+        --button-box-shadow: #{$button-box-shadow};
+        --button-box-shadow-focus: #{$button-box-shadow-focus};
+        --button-outline-color-focus: #{$button-outline-color-focus};
+        --dropdown-arrow-size: #{$dropdown-arrow-size};
+        --dropdown-arrow-size-negative: #{$dropdown-arrow-size-negative};
+        --dropdown-arrow-inner-spacing: #{$dropdown-arrow-inner-spacing};
+        --dropdown-arrow-horizontal-spacing: #{$dropdown-arrow-horizontal-spacing};
+        --dropdown-content-padding: #{$dropdown-content-padding};
+        --dropdown-item-padding: #{$dropdown-item-padding};
+        --tooltip-arrow-width: #{$tooltip-arrow-width};
+        --progress-group-item-margin: #{$progress-group-item-margin};
+        --footer-height: 25rem;
+        --header-weight: bold;
+        --padding-threshold: 0.5rem;
+        --table-stripe-color: white;
+}

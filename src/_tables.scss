@@ -1,0 +1,446 @@
+/*
+-------------------------------------------------------------------------------
+Tables
+-------------------------------------------------------------------------------
+*/
+
+.table {
+  width: 100%;
+  // margin: 2rem 0;
+  // border-collapse: collapse;
+  border: var(--border-width) solid var(--border-color);
+  -webkit-box-shadow: var(--box-shadow);
+  -moz-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+  background-color: var(--box-bg-color);
+
+  border-radius: var(--border-radius);
+  border-spacing: 0;
+  border-collapse: separate;
+
+  thead {
+    tr {
+      //   background-color: $table-head-color;
+      border-bottom: 1px solid var(--border-color);
+
+      //   background-color: inherit;
+      font-size: smaller;
+      text-transform: uppercase;
+      color: #636363;
+    }
+  }
+
+  tfoot {
+
+    tr td,
+    tr th {
+      background-color: #f1f1f1;
+      border-top: 1px solid var(--border-color);
+      border-bottom: none;
+
+      &:last-child {
+        border-bottom-right-radius: var(--border-radius);
+      }
+
+      &:first-child {
+        border-bottom-left-radius: var(--border-radius);
+      }
+    }
+  }
+
+  tbody {
+    tr {
+
+      //   &:not(:last-child) {
+      //     border-bottom: 1px solid var(--border-color);
+      //   }
+      .ref {
+        text-align: end;
+
+        img {
+          max-height: 3rem;
+          max-width: 5rem;
+          margin: -1rem 0;
+        }
+      }
+
+      &:last-child td,
+      &:last-child th {
+        border-bottom: none !important;
+      }
+
+      &:nth-child(even) {
+        background-color: var(--table-stripe-color, white);
+      }
+    }
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: 1rem 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+
+    &.unbreakable {
+      white-space: nowrap;
+    }
+  }
+
+
+  &.simple {
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: none;
+    background-color: transparent;
+
+    thead {
+      tr {
+        background-color: transparent;
+      }
+    }
+
+    tfoot {
+      tr {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &.separate {
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+    background-color: transparent;
+    border: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: -0.5rem;
+
+    &.wide {
+      border-spacing: 1rem;
+    }
+
+    td,
+    th {
+      border: 1px solid var(--border-color);
+      -webkit-box-shadow: var(--box-shadow);
+      -moz-box-shadow: var(--box-shadow);
+      box-shadow: var(--box-shadow);
+    }
+
+    tbody {
+
+      td,
+      th {
+        background-color: var(--box-bg-color);
+      }
+    }
+  }
+
+  &.with-label {
+    margin-top: 0;
+  }
+
+  &.small {
+
+    th,
+    td {
+      padding: 0.6rem 1rem;
+    }
+  }
+
+  &.md {
+
+    th,
+    td {
+      padding: 1.2rem 1.5rem;
+    }
+  }
+
+  &.large {
+
+    th,
+    td {
+      padding: 1.4rem 1.8rem;
+    }
+  }
+
+  &.hover {
+    tbody tr:hover {
+
+      th,
+      td {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+  }
+
+  &.striped {
+    tbody tr:nth-child(even) {
+      background-color: var(--gray-color-very-light);
+    }
+  }
+
+  // colored rows
+  tbody {
+    @each $name in $colors {
+      tr.#{$name} {
+
+        td,
+        th {
+          @if $name==muted {
+            color: var(--muted-color);
+          }
+
+          @else {
+            background-color: var(--#{$name}-color-very-light);
+          }
+        }
+      }
+    }
+  }
+}
+
+td .key {
+  display: block;
+  color: var(--muted-color);
+  font-size: 0.8em;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  overflow-y: hidden;
+  // margin-bottom: 2rem;
+
+  .table {
+
+    td,
+    th {
+      white-space: nowrap;
+    }
+
+    // margin-bottom: 0;
+  }
+}
+
+.table-label {
+  border-left: 1px solid var(--border-color);
+  margin: 2rem 0 0;
+  padding: 0rem 2rem 1rem 1rem;
+  font-weight: bold;
+  font-style: italic;
+  display: block;
+}
+
+tbody:empty::after {
+  content: '—';
+}
+
+tbody:empty {
+  background: white;
+  width: 100%;
+  display: block;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+}
+
+// DataTables overrides
+div.dt-layout-row label {
+  margin-bottom: 0;
+}
+
+div.dt-container div.dt-layout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0.75em 0;
+}
+
+div.dt-container div.dt-layout-row div.dt-layout-cell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-start {
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+div.dt-container div.dt-layout-row div.dt-layout-cell.dt-layout-end {
+  justify-content: flex-end;
+  margin-left: auto;
+}
+
+div.dt-container div.dt-layout-row div.dt-layout-cell:empty {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) {
+    display: block;
+  }
+
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) div.dt-layout-cell {
+    display: block;
+    text-align: center;
+  }
+
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) div.dt-layout-cell>* {
+    margin: 0.5em 0;
+  }
+
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) div.dt-layout-cell.dt-layout-start {
+    margin-right: 0;
+  }
+
+  div.dt-container div.dt-layout-row:not(.dt-layout-table) div.dt-layout-cell.dt-layout-end {
+    margin-left: 0;
+  }
+}
+
+div.dt-container div.dt-layout-start>*:not(:last-child) {
+  margin-right: 1em;
+}
+
+div.dt-container div.dt-layout-end>*:not(:first-child) {
+  margin-left: 1em;
+}
+
+div.dt-container div.dt-layout-full {
+  width: 100%;
+}
+
+div.dt-container div.dt-layout-full>*:only-child {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.dt-container div.dt-layout-table>div {
+  display: block !important;
+}
+
+@media screen and (max-width: 767px) {
+  div.dt-container div.dt-layout-start>*:not(:last-child) {
+    margin-right: 0;
+  }
+
+  div.dt-container div.dt-layout-end>*:not(:first-child) {
+    margin-left: 0;
+  }
+}
+
+
+div.dt-button-collection {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 0.75em 0;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: white;
+  overflow: hidden;
+  z-index: 2002;
+  border-radius: 5px;
+  box-shadow: 3px 4px 10px 1px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+div.dt-button-collection .dt-button {
+  position: relative;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  float: none;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  margin: 0;
+  padding: 0.5em 1em;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+
+div.dt-button-collection .dt-button.dt-button-active {
+  background: none;
+  box-shadow: none;
+}
+
+div.dt-button-collection .dt-button.disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+div.dt-button-collection .dt-button:hover:not(.disabled) {
+  border: none;
+  background: rgba(153, 153, 153, 0.1);
+  box-shadow: none;
+}
+
+div.dt-button-collection .dt-button:focus {
+  outline-offset: -2px;
+}
+
+div.dt-button-collection .dt-button-active:after {
+  position: absolute;
+  top: 50%;
+  margin-top: -10px;
+  right: 1em;
+  display: inline-block;
+  content: "\2713";
+  color: inherit;
+}
+
+.dt-button-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 2001;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dt-button-down-arrow {
+  display: none;
+}
+
+
+.dt-ordering-asc .dt-column-header:after,
+.dt-ordering-desc .dt-column-header:after {
+  display: inline-block;
+  margin-left: 0.5em;
+  font-family: 'Phosphor';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-transform: none;
+  speak: none;
+  color: var(--primary-color-dark);
+}
+
+.dt-ordering-asc .dt-column-header:after {
+  content: "\E124";
+}
+
+.dt-ordering-desc .dt-column-header:after {
+  content: "\E11E";
+}
+
+.dt-empty {
+  text-align: center !important;
+  color: #666;
+}

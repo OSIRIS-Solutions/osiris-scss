@@ -1,0 +1,36 @@
+/*
+-------------------------------------------------------------------------------
+21. Image [hm-21]
+-------------------------------------------------------------------------------
+*/
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+.sophie {
+    background: url(../img/sophie/sophie-book.png) no-repeat center 10px;
+    background-size: auto 110px;
+    padding-top: 120px;
+    text-align: center;
+    
+    &.sophie-coin { background-image: url(../img/sophie/sophie-coin.png) };
+    &.sophie-trophy { background-image: url(../img/sophie/sophie-trophy.png) };
+    &.sophie-empty { background-image: url(../img/sophie/sophie-empty.png) };
+    &.sophie-book { background-image: url(../img/sophie/sophie-book.png) };
+    &.sophie-idea { background-image: url(../img/sophie/sophie-idea.png) };
+    &.sophie-bored { background-image: url(../img/sophie/sophie-bored.png) };
+    &.sophie-ai { background-image: url(../img/sophie/sophie-ai.png) };
+    &.sophie-message { background-image: url(../img/sophie/sophie-message.png) };
+    &.sophie-announced { background-image: url(../img/sophie/sophie-announced.png) };
+    &.sophie-excited { background-image: url(../img/sophie/sophie-excited.png) };
+    &.sophie-reward { background-image: url(../img/sophie/sophie-reward.png) };
+    &.sophie-report { background-image: url(../img/sophie/sophie-report.png) };
+    &.sophie-report { background-image: url(../img/sophie/sophie-checklist.png) };
+    &.sophie-search { background-image: url(../img/sophie/sophie-search.png) };
+    &.sophie-error { background-image: url(../img/sophie/sophie-error.png) };
+    &.sophie-disappointed { background-image: url(../img/sophie/sophie-disappointed.png) };
+}

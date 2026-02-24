@@ -1,0 +1,212 @@
+/*
+-------------------------------------------------------------------------------
+3.  Scrollbars [hm-03]
+
+Notes:
+    ~ Any scrollbars on the body itself is not affected. This is because the 
+    page-wrapper is always expected, as the entire framework is built around 
+    it.
+    ~ Only styled on screens larger than 768px, because mobiles and tablets 
+    have disappearing scrollbars, which look great most of the time.
+    ~ The webkit scrollbars work on webkit based browsers, such as Chrome, 
+    Safari, Brave, and the new Microsoft Edge.
+    ~ The custom CSS scrollbars work only on Firefox as of 2020. It is a very 
+    new specification.
+-------------------------------------------------------------------------------
+*/
+
+
+$webkit-scrollbar-width-height: 1.4rem;
+$webkit-scrollbar-thumb-min-width-height: 3rem;
+$webkit-scrollbar-thumb-border-width: 0.4rem;
+$webkit-scrollbar-thumb-border-radius: 1rem;
+
+$webkit-scrollbar-bg-color: transparent;
+$webkit-scrollbar-track-border-color: transparent;
+$webkit-scrollbar-thumb-bg-color: rgba(0, 0, 0, 0.15);
+$webkit-scrollbar-thumb-bg-color-hover: rgba(0, 0, 0, 0.3);
+$webkit-scrollbar-thumb-border-color: transparent;
+$webkit-scrollbar-thumb-border-color-hover: transparent;
+$webkit-scrollbar-corner-bg-color: transparent;
+$webkit-scrollbar-corner-border-color: rgba(0, 0, 0, 0.1);
+
+$dm-webkit-scrollbar-thumb-bg-color: rgba(255, 255, 255, 0.25);
+
+$css-scrollbar-width: thin;
+
+
+@include respond-above(md) {
+    /* Base scrollbar */
+    body {
+        *::-webkit-scrollbar {
+            width: $webkit-scrollbar-width-height;
+            height: $webkit-scrollbar-width-height;
+            background-color: $webkit-scrollbar-bg-color;
+        }
+        *::-webkit-scrollbar-track {
+            &:vertical {
+                border-left:var(--border-width) solid $webkit-scrollbar-track-border-color;
+            }
+            &:horizontal {
+                border-top:var(--border-width) solid $webkit-scrollbar-track-border-color;
+            }
+        }
+        *::-webkit-scrollbar-thumb {
+            min-width: $webkit-scrollbar-thumb-min-width-height;
+            min-height: $webkit-scrollbar-thumb-min-width-height;
+            background-color: $webkit-scrollbar-thumb-bg-color;
+            border: $webkit-scrollbar-thumb-border-width solid $webkit-scrollbar-thumb-border-color;
+            -moz-background-clip: content;
+            -webkit-background-clip: content;
+            background-clip: content-box;
+            border-radius: $webkit-scrollbar-thumb-border-radius;
+            &:hover {
+                background-color: $webkit-scrollbar-thumb-bg-color-hover;
+                border-color: $webkit-scrollbar-thumb-border-color-hover;
+            }
+        }
+        *::-webkit-scrollbar-corner {
+            background-color: $webkit-scrollbar-corner-bg-color;
+            border-left:var(--border-width) solid $webkit-scrollbar-corner-border-color;
+            border-top:var(--border-width) solid $webkit-scrollbar-corner-border-color;
+        }
+        .sidebar {
+            &::-webkit-scrollbar {
+                width: $webkit-scrollbar-width-height;
+                height: $webkit-scrollbar-width-height;
+                background-color: $webkit-scrollbar-bg-color;
+            }
+            &::-webkit-scrollbar-track {
+                border-width:var(--border-width);
+                border-color: $webkit-scrollbar-track-border-color;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: $webkit-scrollbar-thumb-bg-color;
+                border-width: $webkit-scrollbar-thumb-border-width;
+                border-color: $webkit-scrollbar-thumb-border-color;
+                border-radius: $webkit-scrollbar-thumb-border-radius;
+                &:hover {
+                    background-color: $webkit-scrollbar-thumb-bg-color-hover;
+                    border-color: $webkit-scrollbar-thumb-border-color-hover;
+                }
+            }
+            &::-webkit-scrollbar-corner {
+                background-color: $webkit-scrollbar-corner-bg-color;
+                border-width:var(--border-width);
+                border-color: $webkit-scrollbar-corner-border-color;
+            }
+        }
+        .modal-dialog {
+            &::-webkit-scrollbar {
+                width: $webkit-scrollbar-width-height;
+                height: $webkit-scrollbar-width-height;
+                background-color: $webkit-scrollbar-bg-color;
+            }
+            &::-webkit-scrollbar-track {
+                border-width:var(--border-width);
+                border-color: rgba(255, 255, 255, 0.05);
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: $dm-webkit-scrollbar-thumb-bg-color;
+                border-width: $webkit-scrollbar-thumb-border-width;
+                border-color: $webkit-scrollbar-thumb-border-color;
+                border-radius: $webkit-scrollbar-thumb-border-radius;
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.4);
+                    border-color: $webkit-scrollbar-thumb-border-color-hover;
+                }
+            }
+            &::-webkit-scrollbar-corner {
+                background-color: $webkit-scrollbar-corner-bg-color;
+                border-width:var(--border-width);
+                border-color: $webkit-scrollbar-corner-border-color;
+            }
+        }
+        .modal-full {
+            .modal-dialog {
+                &::-webkit-scrollbar {
+                    width: $webkit-scrollbar-width-height;
+                    height: $webkit-scrollbar-width-height;
+                    background-color: var(--body-color);
+                }
+                &::-webkit-scrollbar-track {
+                    border-width:var(--border-width);
+                    border-color: $webkit-scrollbar-track-border-color;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background-color: $webkit-scrollbar-thumb-bg-color;
+                    border-width: $webkit-scrollbar-thumb-border-width;
+                    border-color: $webkit-scrollbar-thumb-border-color;
+                    border-radius: $webkit-scrollbar-thumb-border-radius;
+                    &:hover {
+                        background-color: $webkit-scrollbar-thumb-bg-color-hover;
+                        border-color: $webkit-scrollbar-thumb-border-color-hover;
+                    }
+                }
+                &::-webkit-scrollbar-corner {
+                    background-color: var(--body-color);
+                    border-width:var(--border-width);
+                    border-color: $webkit-scrollbar-corner-border-color;
+                }
+            }
+        }
+        .tile {
+            &::-webkit-scrollbar {
+                width: $webkit-scrollbar-width-height;
+                height: $webkit-scrollbar-width-height;
+                background-color: $webkit-scrollbar-bg-color;
+            }
+            &::-webkit-scrollbar-track {
+                border-width:var(--border-width);
+                border-color: $webkit-scrollbar-track-border-color;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: $webkit-scrollbar-thumb-bg-color;
+                border-width: $webkit-scrollbar-thumb-border-width;
+                border-color: $webkit-scrollbar-thumb-border-color;
+                border-radius: $webkit-scrollbar-thumb-border-radius;
+                &:hover {
+                    background-color: $webkit-scrollbar-thumb-bg-color-hover;
+                    border-color: $webkit-scrollbar-thumb-border-color-hover;
+                }
+            }
+            &::-webkit-scrollbar-corner {
+                background-color: $webkit-scrollbar-corner-bg-color;
+                border-width:var(--border-width);
+                border-color: $webkit-scrollbar-corner-border-color;
+            }
+        }
+    }
+   
+    body {
+        * {
+            scrollbar-width: $css-scrollbar-width;
+            scrollbar-color: $webkit-scrollbar-thumb-bg-color $gray-color-light;
+        }
+        .sidebar {
+            scrollbar-width: $css-scrollbar-width;
+            scrollbar-color: $webkit-scrollbar-thumb-bg-color $gray-color-very-light;
+        }
+        .modal-dialog {
+            scrollbar-width: $css-scrollbar-width;
+            scrollbar-color: $dm-webkit-scrollbar-thumb-bg-color transparent;
+        }
+        .modal-full {
+            .modal-dialog {
+                scrollbar-width: $css-scrollbar-width;
+                scrollbar-color: $webkit-scrollbar-thumb-bg-color $gray-color-light;
+            }
+        }
+        .tile {
+            scrollbar-width: $css-scrollbar-width;
+            scrollbar-color: $webkit-scrollbar-thumb-bg-color $gray-color-light;
+        }
+        .css-scrollbar-transparent-track {
+            scrollbar-width: $css-scrollbar-width !important;
+            scrollbar-color: $webkit-scrollbar-thumb-bg-color transparent !important;
+        }
+    }
+    
+}
+
+

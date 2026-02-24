@@ -1,0 +1,111 @@
+a {
+	color: var(--link-color);
+	text-decoration: none;
+	cursor: pointer;
+
+
+	&:hover {
+		color: var(--link-color-hover);
+		// text-decoration: underline;
+	}
+
+	&.link:not(.btn) {
+		&:hover {
+			// color: var(--secondary-color-light);
+			text-decoration: none;
+		}
+
+		&::after {
+			font-family: $icon-font;
+			// font-weight: 900;
+			color: var(--link-color);
+			// content: '\f061';
+			content: '\E06C';
+			margin-left: .5rem;
+			line-height: inherit;
+			font-size: 1.3em;
+			vertical-align: -0.2em;
+		}
+
+		&[target="_blank"]::after {
+			content: "\E5DE";
+		}
+	}
+
+	&.colorless {
+		color: inherit;
+	}
+
+	&.short-link {
+		display: inline-block;
+		max-width: 25rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.hyperlink-underline {
+	text-decoration: underline;
+}
+
+$link-list-px : 1.5rem;
+
+.link-list {
+	a {
+		position: relative;
+		display: block;
+		padding: $link-list-px 5.5rem $link-list-px 2.2rem;
+		border-radius: var(--border-radius);
+		background-color: #fff;
+		color: var(--text-color);
+		font-size: 1.8rem;
+		margin: 1rem 0;
+		box-shadow: var(--box-shadow);
+
+		&:hover {
+			text-decoration: none;
+		}
+
+		&::after {
+			position: absolute;
+			top: 0;
+			right: 0;
+			// content: '\f061';
+			content: '\E06C';
+			// font-weight: 900;
+			font-family: $icon-font;
+			margin: 0 0 0 1rem;
+			padding: $link-list-px 2rem;
+			color: #fff;
+			height: 100%;
+			background-color: var(--secondary-color);
+
+			border-top-right-radius: var(--border-radius);
+			border-bottom-right-radius: var(--border-radius);
+
+
+			display: flex;
+			align-items: center;
+			font-size: x-large;
+			font-weight: bolder;
+		}
+
+		&[target="_blank"]::after {
+			content: "\E5DE";
+		}
+	}
+
+	&-sm {
+		$link-list-px: $link-list-px - .5rem;
+
+		a {
+			padding: $link-list-px 5.5rem $link-list-px 2.2rem;
+			font-size: 1.4rem;
+
+			&::after {
+				padding: $link-list-px $link-list-px + .5rem;
+			}
+		}
+	}
+}

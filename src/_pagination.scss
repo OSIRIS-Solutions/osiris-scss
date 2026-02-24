@@ -1,0 +1,93 @@
+/*
+-------------------------------------------------------------------------------
+17. Pagination [hm-17]
+-------------------------------------------------------------------------------
+*/
+
+$pagination-item-padding: 0 0.5rem;
+$pagination-item-margin: 0 0.2rem 0.5rem 0;
+
+$pagination-item-width : 3rem;
+$small-pagination-item-width : 2.5rem;
+$large-pagination-item-width : 3.5rem;
+
+.pagination {
+
+    button {
+        background-color: transparent;
+        border: none;
+    }
+
+    a, button {
+        display: inline-block;
+        padding: $pagination-item-padding;
+        margin: $pagination-item-margin;
+        font-size: var(--base-font-size);
+        min-width: $pagination-item-width;
+        height: $pagination-item-width;
+        line-height: $pagination-item-width;
+        text-align: center;
+        color: var(--secondary-color);
+        font-size: 1.6rem;
+        vertical-align: middle;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+        &.direction,
+        &.active,
+        &:hover {
+            border-radius: var(--border-radius);
+            -moz-box-shadow: $button-box-shadow;
+            -webkit-box-shadow: $button-box-shadow;
+            box-shadow: $button-box-shadow;
+
+        }
+
+        &.direction {
+            background-color: $button-bg-color;
+            border:var(--border-width) solid var(--button-border-color);
+            font-size: 2.4rem;
+            &:hover {
+                background-color: mix(black, $button-bg-color, 5%);
+            }
+        }
+
+        &.active,
+        &:not(.direction):hover {
+            color: white;
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            // pointer-events: none;
+        }
+
+        &.disabled {
+            opacity: 0.6;
+            -moz-box-shadow: none;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            pointer-events: none;
+        }
+    }
+
+    /* Large pagination */
+    &.pagination-lg {
+        a {
+            font-size: $large-button-font-size;
+            min-width: $large-pagination-item-width;
+            height: $large-pagination-item-width;
+            line-height: $large-pagination-item-width;
+        }
+    }
+
+    /* Small pagination */
+    &.pagination-sm {
+        a {
+            font-size: $small-button-font-size;
+            min-width: $small-pagination-item-width;
+            height: $small-pagination-item-width;
+            line-height: $small-pagination-item-width;
+        }
+    }
+}

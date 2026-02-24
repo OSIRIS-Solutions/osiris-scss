@@ -1,0 +1,27 @@
+/*
+-------------------------------------------------------------------------------
+Print
+
+Notes:
+    ~ The following section contains specific styling for print, i.e. hiding
+    the sidebar and navbar and enhancing the contrast by removing background
+    colors and making the font black.
+        
+-------------------------------------------------------------------------------
+*/
+
+@media print {
+
+    *:root {
+        --text-color: black;
+        --body-color: white;
+    }
+
+    .page-wrapper>.sidebar,
+    .page-wrapper>.navbar,
+    .sidebar-overlay,
+    .page-footer {
+        display: none;
+    }
+
+}

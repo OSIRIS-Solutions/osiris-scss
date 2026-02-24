@@ -1,0 +1,63 @@
+/*
+-------------------------------------------------------------------------------
+18. Breadcrumb [hm-18]
+-------------------------------------------------------------------------------
+*/
+.breadcrumb {
+    padding: 0;
+    // background-color: transparent;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-size: smaller;
+    button {
+    border: 0 solid transparent;
+
+    }
+    li, button {
+        display: inline-block;
+        list-style: none;
+        margin-bottom: 0;
+        &:before {
+            font-family: $icon-font;
+			color: var(--border-color);
+			// content: '\f054';
+            content: '\E13A';
+            font-size: 1.25em;
+            line-height: 1em;
+            vertical-align: -0.15em;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+        &:first-child:before {
+            display: none;
+        }
+        &.active a {
+            pointer-events: none;
+            color: inherit;
+        }
+        
+    }
+
+    &.category {
+        font-size: small;
+        font-weight: bold;
+        letter-spacing: 1pt;
+        color: var(--highlight-color);
+    }
+
+
+}
+.breadcrumb-container {
+    width: 100%;
+    background-color: var(--secondary-color-dark);
+    padding: 1rem 2rem;
+    .breadcrumb {
+        margin-bottom: 0;
+    }
+    a {
+        color: white;
+    &.active {
+        color: white;
+    }
+    }
+}
