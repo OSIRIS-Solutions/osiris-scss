@@ -9,27 +9,6 @@ This repository is only required if you want to develop or modify the styling.
 
 ---
 
-## Structure
-
-```
-scss/
-├── main.scss
-└── src/
-├── _variables.scss
-├── _functions.scss
-├── _base.scss
-├── _layout.scss
-├── _buttons.scss
-├── …
-```
-
-- `main.scss` is the entry point.
-- All files in `src/` are partials and are imported via `@import`.
-- Files use the SCSS partial convention (`_filename.scss`).
-
-
----
-
 ## Requirements
 
 - Dart Sass (recommended)
