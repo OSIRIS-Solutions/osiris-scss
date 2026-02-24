@@ -7,14 +7,12 @@ This repository contains the styling source code used to generate the compiled C
 The compiled CSS files are included in the main OSIRIS repository.  
 This repository is only required if you want to develop or modify the styling.
 
----
 
 ## Requirements
 
 - Dart Sass (recommended)
   https://sass-lang.com/
 
----
 
 ## Build
 
@@ -32,7 +30,6 @@ For development (with auto-rebuild):
 sass --watch main.scss:../osiris/css/main.css
 ```
 
----
 
 ## Workflow
 1. Modify SCSS files.
@@ -41,14 +38,12 @@ sass --watch main.scss:../osiris/css/main.css
    - SCSS changes → this repository
    - Generated CSS → main OSIRIS repository
 
----
 
 ## Versioning Strategy
 - SCSS is versioned independently.
 - The OSIRIS main repository references a specific SCSS version (via submodule).
 - Compiled CSS is committed to the main repository for deployment stability.
 
----
 
 ## Credits
 
