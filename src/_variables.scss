@@ -149,8 +149,6 @@ $dm-base-text-color: rgba(255, 255, 255, 0.8);
 
 $muted-text-color: #b3b3b3;
 $table-head-color: #dfdfdf;
-$link-color : $primary-color;
-$link-color-hover : mix(white, $link-color, 10%);
 
 /* Navbar */
 $navbar-height: 8rem;
@@ -291,8 +289,8 @@ CSS variables (CSS custom properties)
         --primary-color-30: #{$primary-color-30};
         --primary-color-60: #{$primary-color-60};
 
-        --link-color: var(--primary-color);
-        --link-color-hover: var(--primary-color-light);
+        --link-color: var(--blue-color);
+        --link-color-hover: var(--blue-color-light);
 
         --success-color: #{$success-color};
         --success-color-light: #{$success-color-light};
@@ -334,8 +332,8 @@ CSS variables (CSS custom properties)
         --signal-color-30: #{$signal-color-30};
         --signal-color-60: #{$signal-color-60};
 
-        --blue-color: #06667d;
-        --blue-color-light: #239dbb;
+        --blue-color: #0e7b96;
+        --blue-color-light: #2397b4;
         --blue-color-very-light: #d3eaf0;
         --blue-color-dark: #12687d;
         --blue-color-very-dark: #043a48;
