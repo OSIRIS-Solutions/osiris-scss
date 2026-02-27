@@ -108,24 +108,6 @@ details * {
     background-position: $collapse-header-bg-position;
 }
 
-/* Collapse header focus effect (::after) */
-
-.collapse-header::after {
-    content: "";
-    position: absolute;
-    display: block;
-    top: $collapse-header-focus-effect-top;
-    left: $collapse-header-focus-effect-top;
-    width: calc(100% - (2 * #{$collapse-header-focus-effect-top}));
-    height: calc(100% - (2 * #{$collapse-header-focus-effect-top}));
-    border-radius: var(--border-radius);
-}
-.collapse-header:focus::after {
-    -moz-box-shadow: $collapse-header-focus-effect-box-shadow;
-    -webkit-box-shadow: $collapse-header-focus-effect-box-shadow;
-    box-shadow: $collapse-header-focus-effect-box-shadow;
-}
-
 /* Controlling display based on collapse open state */
 
 .collapse-panel[open] .hidden-collapse-open {
