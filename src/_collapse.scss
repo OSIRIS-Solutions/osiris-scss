@@ -5,27 +5,12 @@ Collapse
 */
 
 
-$collapse-header-border-color: var(--border-color);
-$collapse-header-box-shadow: var(--box-shadow);
-$collapse-header-outline-focus: none;
-
-$dm-collapse-header-box-shadow: none;
-
 /* Collapse header arrow set using background image */
-
 $collapse-header-padding-with-bg-image: 1.2rem 2rem 1.2rem 4.4rem;
 /* Only the padding on the left is increased to make room for the arrow */
 $collapse-header-bg-repeat: no-repeat;
 $collapse-header-bg-position: 2rem center;
-
 $open-collapse-header-bg-size: 1rem;
-
-$collapse-header-focus-effect-top: 0.2rem;
-$collapse-header-focus-effect-box-shadow: inset 0 0 0 0.2rem var(--secondary-color-light);
-
-/* Collapse content */
-
-$collapse-content-box-shadow: var(--box-shadow);
 
 
 details,
@@ -43,38 +28,13 @@ details * {
     font-size: var(--base-font-size);
     color: var(--text-color);
     background-color: var(--box-bg-color);
-    border:var(--border-width) solid $collapse-header-border-color;
+    border: var(--border-width) solid var(--border-color);
     border-radius: var(--border-radius);
-    -moz-box-shadow: $collapse-header-box-shadow;
-    -webkit-box-shadow: $collapse-header-box-shadow;
-    box-shadow: $collapse-header-box-shadow;
+    -moz-box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
 }
-.collapse-header:focus {
-    color: var(--text-color);
-    background-color: var(--box-bg-color);
-    border-color: $collapse-header-border-color;
-    -moz-box-shadow: $collapse-header-box-shadow;
-    -webkit-box-shadow: $collapse-header-box-shadow;
-    box-shadow: $collapse-header-box-shadow;
-    outline: $collapse-header-outline-focus;
-}
-.collapse-panel[open] .collapse-header {
-    color: var(--text-color);
-    background-color: var(--box-bg-color);
-    border-color: $collapse-header-border-color;
-    -moz-box-shadow: $collapse-header-box-shadow;
-    -webkit-box-shadow: $collapse-header-box-shadow;
-    box-shadow: $collapse-header-box-shadow;
-}
-.collapse-panel[open] .collapse-header:focus {
-    color: var(--text-color);
-    background-color: var(--box-bg-color);
-    border-color: $collapse-header-border-color;
-    -moz-box-shadow: $collapse-header-box-shadow;
-    -webkit-box-shadow: $collapse-header-box-shadow;
-    box-shadow: $collapse-header-box-shadow;
-    outline: $collapse-header-outline-focus;
-}
+
 .collapse-panel[open] .collapse-header {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
@@ -86,13 +46,16 @@ details * {
     /* Firefox */
     list-style-type: none;
 }
+
 .collapse-header::-webkit-details-marker {
     /* Chrome */
     display: none;
 }
+
 .collapse-header::marker {
     display: none;
 }
+
 .collapse-header:not(.without-arrow) {
     padding: $collapse-header-padding-with-bg-image;
     background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAUCAYAAAC58NwRAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH5AgHFAwNJY24UQAAAJVJREFUKM+lk8ENgzAMRZ9hgS4SiRFgDN+6QifpCD1mDFbIIQuwASNwcaSqKsEW/5RI/1n+jiMAqvoE3sCScy50JGb+2H2/ggar3PQAVlWdesBilV2QWIYJWM1Mrz1pBy8k37QHkt8eryD5F6wHydn4zqCBoO63FAodGmvo4UKrETG3bXWbG/DymgHGWmtJKW3A7PmiB2rUYYave/NSAAAAAElFTkSuQmCC);
@@ -100,6 +63,7 @@ details * {
     background-repeat: $collapse-header-bg-repeat;
     background-position: $collapse-header-bg-position;
 }
+
 .collapse-panel[open] .collapse-header:not(.without-arrow) {
     padding: $collapse-header-padding-with-bg-image;
     background-image: $select-bg-image;
@@ -113,6 +77,7 @@ details * {
 .collapse-panel[open] .hidden-collapse-open {
     display: none;
 }
+
 .collapse-panel:not([open]) .hidden-collapse-closed {
     display: none;
 }
@@ -123,11 +88,11 @@ details * {
     padding: 2rem;
     font-size: var(--base-font-size);
     color: var(--text-color);
-    background-color: $gray-color-very-light;
-    border:var(--border-width) solid $collapse-header-border-color;
-    -moz-box-shadow: $collapse-content-box-shadow;
-    -webkit-box-shadow: $collapse-content-box-shadow;
-    box-shadow: $collapse-content-box-shadow;
+    background-color: white;
+    border: var(--border-width) solid var(--border-color);
+    -moz-box-shadow: var(--box-shadow);
+    -webkit-box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow);
     border-top: none;
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
@@ -138,41 +103,47 @@ details * {
 .collapse-group .collapse-panel:not(:first-child) {
     margin-top: calc((-1) * var(--border-width));
 }
+
 .collapse-group .collapse-panel:not(:first-child) .collapse-header {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 .collapse-group .collapse-panel:not([open]):not(:last-child) .collapse-header {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
+
 .collapse-group .collapse-panel[open]:not(:first-child) .collapse-content {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
 .collapse-group .collapse-panel[open]:not(:last-child) .collapse-content {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom: 0;
 }
 
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
     /* 
     On IE, collapse panels are styled to be always open. This is because they 
     are not supporter by the browser.
     */
 
     /* Collapse header */
-    
+
     .collapse-panel .collapse-header {
         cursor: auto;
         color: var(--text-color);
         background-color: $gray-color-very-light;
-        border-color: $collapse-header-border-color;
-        -moz-box-shadow: $collapse-header-box-shadow;
-        -webkit-box-shadow: $collapse-header-box-shadow;
-        box-shadow: $collapse-header-box-shadow;
+        border-color: var(--border-color);
+        -moz-box-shadow: var(--box-shadow);
+        -webkit-box-shadow: var(--box-shadow);
+        box-shadow: var(--box-shadow);
     }
+
     .collapse-panel .collapse-header {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
@@ -193,6 +164,7 @@ details * {
     .collapse-panel .hidden-collapse-open {
         display: none;
     }
+
     .collapse-panel:not([open]) .hidden-collapse-closed {
         display: inline-block;
     }
@@ -203,11 +175,10 @@ details * {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
     }
+
     .collapse-group .collapse-panel:not(:last-child) .collapse-content {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
         border-bottom: 0;
     }
 }
-
-
