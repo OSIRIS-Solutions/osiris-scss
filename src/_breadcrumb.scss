@@ -17,6 +17,9 @@
         display: inline-block;
         list-style: none;
         margin-bottom: 0;
+        a {
+            color: var(--primary-color);
+        }
         &:before {
             font-family: $icon-font;
 			color: var(--border-color);

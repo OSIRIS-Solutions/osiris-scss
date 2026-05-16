@@ -374,24 +374,28 @@ a.module:hover {
 
 // spectrum
 
-  .spectrum-title {
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-    &.spectrum-1 {
-      color: var(--spectrum-1-color);
-    }
-    &.spectrum-2 {
-      color: var(--spectrum-2-color);
-    }
-    &.spectrum-3 {
-      color: var(--spectrum-3-color);
-    }
-    &.spectrum-4 {
-      color: var(--spectrum-4-color);
-    }
+.spectrum-title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+
+  &.spectrum-1 {
+    color: var(--spectrum-1-color);
   }
+
+  &.spectrum-2 {
+    color: var(--spectrum-2-color);
+  }
+
+  &.spectrum-3 {
+    color: var(--spectrum-3-color);
+  }
+
+  &.spectrum-4 {
+    color: var(--spectrum-4-color);
+  }
+}
 
 @property --percentage {
   syntax: "<number>";
@@ -1096,3 +1100,24 @@ table img {
     margin-right: 0;
   }
 }
+
+
+.index-pill {
+  background-color: var(--body-color);
+  border-radius: 10px;
+  color: var(--muted-color);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 10px;
+  padding: 3px 7px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.download-buttons .btn.link {
+  color: var(--muted-color);
+}
+

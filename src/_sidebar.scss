@@ -459,7 +459,7 @@ Sidebar content
   border-radius: 50%;
   object-fit: cover;
   margin-right: 1rem;
-  object-position: 0 -1rem;
+  object-position: top center;
   flex-shrink: 0;
   border: var(--border-width) solid var(--border-color);
 }

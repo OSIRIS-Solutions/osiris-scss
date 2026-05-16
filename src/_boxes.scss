@@ -12,7 +12,7 @@ Boxes, tiles, and title bar
     //     color: white;
     //     text-decoration: underline dashed;
     // }
-    border-bottom: var(--border-width) solid var(--border-color); 
+    border-bottom: var(--border-width) solid var(--border-color);
     border-top: var(--border-width) solid var(--border-color);
 
     width: 100%;
@@ -66,14 +66,17 @@ Boxes, tiles, and title bar
     box-shadow: var(--box-shadow);
     background-color: var(--box-bg-color);
     padding: 0;
-    padding-top: 0.01px; padding-bottom: 0.01px; /* to fix collapsing margin issue */
+    padding-top: 0.01px;
+    padding-bottom: 0.01px;
+    /* to fix collapsing margin issue */
     border-radius: var(--border-radius);
 
     &.padded {
         padding: 1rem 2rem;
     }
 
-    &>.title, &.content>.title {
+    &>.title,
+    &.content>.title {
         font-size: $content-title-font-size;
         font-weight: $content-title-font-weight;
         margin-top: 0;
@@ -95,18 +98,21 @@ Boxes, tiles, and title bar
         border-bottom-right-radius: var(--border-radius);
     }
 
-    &>.header, &>.footer {
+    &>.header,
+    &>.footer {
         display: flex;
         align-items: center;
         padding: 1rem 2rem;
     }
+
     hr {
         margin: 1.5rem 0;
     }
-    
+
     @each $name in $colors {
         &.#{$name} {
             border-left: 4px solid var(--#{$name}-color);
+
             &>.header {
                 background-color: var(--#{$name}-color-very-light);
             }
@@ -151,7 +157,7 @@ Boxes, tiles, and title bar
     color: var(--text-color);
     background-color: var(--box-bg-color);
     border-radius: var(--border-radius);
-    border:var(--border-width) solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
     -moz-box-shadow: var(--box-shadow);
     -webkit-box-shadow: var(--box-shadow);
     box-shadow: var(--box-shadow);
@@ -159,8 +165,8 @@ Boxes, tiles, and title bar
     min-height: 10rem;
 
     flex-wrap: wrap;
-align-items: center;
-justify-content: center;
+    align-items: center;
+    justify-content: center;
 
     &>* {
         width: 100%;
@@ -332,22 +338,67 @@ justify-content: center;
 
 // Special cases
 
-.box > .table.simple th:first-child,
-.box > .table.simple td:first-child {
-  padding-left: 1.4rem;
+.box>.table.simple th:first-child,
+.box>.table.simple td:first-child {
+    padding-left: 1.4rem;
 }
 
-.box > .content > .flag {
-  /* background-color: var(--secondary-color-20); */
-  background: #f1f1f1;
-  /* border: var(--border-width) solid var(--border-color);
+.box>.content>.flag {
+    /* background-color: var(--secondary-color-20); */
+    background: #f1f1f1;
+    /* border: var(--border-width) solid var(--border-color);
     border-left-width: 0; */
-  /* color: var(--secondary-color); */
-  font-weight: bold;
-  padding: 0.5rem 1rem 0.5rem 2rem;
-  margin-left: -2rem;
-  border-top-right-radius: var(--border-radius);
-  border-bottom-right-radius: var(--border-radius);
-  background: var(--text-color);
-  color: white;
+    /* color: var(--secondary-color); */
+    font-weight: bold;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    margin-left: -2rem;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    background: var(--text-color);
+    color: white;
+}
+
+a.card {
+    display: block;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    margin-bottom: 2rem;
+
+    --primary-color: #0e7b96;
+    --primary-color-light: #0e7b9633;
+    --primary-color-very-light: #0e7b961A;
+}
+
+a.card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, var(--primary-color-light) 0%, var(--primary-color-very-light) 100%);
+}
+
+
+a.card p {
+    margin: 0;
+    color: var(--muted-color);
+}
+a.card:hover p {
+    color: var(--primary-color);
+}
+
+a.card b {
+    font-size: 1.6rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+a.card i {
+    font-size: 2.4rem;
+    margin-right: .5rem;
+    width: 4rem;
+    color: var(--primary-color);
 }

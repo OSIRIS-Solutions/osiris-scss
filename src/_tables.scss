@@ -70,7 +70,7 @@ Tables
       }
 
       &:nth-child(even) {
-        background-color: var(--table-stripe-color, white);
+        background-color: var(--table-stripe-color, transparent);
       }
     }
   }

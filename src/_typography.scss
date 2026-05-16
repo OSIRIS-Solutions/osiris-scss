@@ -25,7 +25,10 @@ h6 {
   margin-bottom: 1rem;
   font-weight: var(--header-weight);
   font-family: var(--header-font);
-  & i.ph, & i.ph-fill, & i.ph-duotone {
+
+  & i.ph,
+  & i.ph-fill,
+  & i.ph-duotone {
     font-size: 1.2em;
     margin-right: 0.5rem;
     vertical-align: text-bottom;
@@ -41,6 +44,7 @@ h1 {
   line-height: 1.3;
   margin-top: 3rem;
 }
+
 h1:first-of-type {
   margin-top: 1rem;
 }
@@ -113,7 +117,9 @@ blockquote {
   color: var(--text-color);
 }
 
-i.ph, i.ph-fill, i.ph-duotone {
+i.ph,
+i.ph-fill,
+i.ph-duotone {
   // font-size: 1.8rem;
   // display: inline;
   // line-height: 1.8;
@@ -153,6 +159,16 @@ h6 i.ph-duotone {
 }
 
 .underline-dashed {
-    text-decoration: underline;
-    text-decoration-style: dashed;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+}
+
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--secondary-color);
+  // font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: -.5rem;
 }

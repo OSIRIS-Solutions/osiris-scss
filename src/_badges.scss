@@ -88,3 +88,8 @@ a.badge-group:hover {
     background-color: var(--#{$name}-color-30);
   }
 }
+
+.badge[data-toggle="tooltip"] {
+  cursor: help;
+  border-bottom: 1px dashed currentColor;
+}
