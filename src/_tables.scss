@@ -68,10 +68,6 @@ Tables
       &:last-child th {
         border-bottom: none !important;
       }
-
-      &:nth-child(even) {
-        background-color: var(--table-stripe-color, transparent);
-      }
     }
   }
 
@@ -206,6 +202,16 @@ Tables
             background-color: var(--#{$name}-color-very-light);
           }
         }
+      }
+    }
+  }
+
+  // table not simple and not cards
+  &:not(.simple):not(.cards) {
+
+    tbody tr {      
+      &:nth-child(even) {
+        background-color: var(--table-stripe-color, transparent);
       }
     }
   }
